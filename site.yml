@@ -5,6 +5,7 @@
   pre_tasks:
 
   - name: install update
+    tags: always
     yum:
       update_only: yes
       update_cache: yes
@@ -14,6 +15,7 @@
   tasks:
   
   - name: install apache2 and php package
+    tags: apache,php,amazon
     yum:
       name:
         - httpd
@@ -26,6 +28,7 @@
   tasks:
 
   - name: isntall mariadb
+    tags: mariadb,amazon
     yum:
       name: mariadb
       state: latest
