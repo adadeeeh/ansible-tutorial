@@ -8,7 +8,9 @@
     yum:
       update_cache: yes
 
-  - name: remove apache2 package
+  - name: remove apache2 and php package
     yum:
-      name: httpd
+      name:
+        - httpd
+        - php
       state: absent

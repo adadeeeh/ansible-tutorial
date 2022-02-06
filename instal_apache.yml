@@ -4,19 +4,11 @@
   become: true
   tasks:
   
-  - name: update repository index
+  - name: install apache2 and php package
     yum:
+      name:
+        - httpd
+        - php
+      state: latest
       update_cache: yes
-    when: ansible_distribution == "Amazon" and ansible_distribution_version == "2"
-
-  - name: install apache2 package
-    yum:
-      name: httpd
-      state: latest
-    when: ansible_distribution == "Amazon" and ansible_distribution_version == "2"
-
-  - name: install php
-    yum:
-      name: php
-      state: latest
     when: ansible_distribution == "Amazon" and ansible_distribution_version == "2"
