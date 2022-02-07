@@ -40,6 +40,30 @@
       state: latest
     when: ansible_distribution == "Amazon" and ansible_distribution_version == "2"
 
+  - name: start httpd
+    tags: apache,httpd,amazon
+    service:
+      name: httpd
+      state: started
+      enabled: yes
+    when: ansible_distribution == "Amazon" and ansible_distribution_version == "2"
+
+  - name: change e-mail address for admin
+    tags: apache,httpd,amazon
+    lineinfile:
+      path: /etc/httpd/conf/httpd.conf
+      regexp: '^ServerAdmin'
+      line: ServerAdmin fatur@gmail.com
+    when: ansible_distribution == "Amazon" and ansible_distribution_version == "2"
+    register: httpd
+
+  - name: restart httpd
+    tags: apache,httpd,amazon
+    service:
+      name: httpd
+      state: restarted
+    when: httpd.changed
+
   - name: copy default html file
     tags: apache,httpd
     copy:
