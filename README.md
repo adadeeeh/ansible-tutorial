@@ -16,6 +16,6 @@ This repository is used for ansible tutorial based on [this youtube playlist](ht
 3. Add remote_user in ansible.cfg
 4. run site.yml
    ```
-   ansible-playbook --ask-become-pass site.yml
+   ansible-playbook site.yml
    ```
    sudoer file and remote_user are used so that password is not needed when running playbook
