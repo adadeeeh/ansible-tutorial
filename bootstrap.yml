@@ -1,0 +1,36 @@
+---
+
+- hosts: all
+  become: true
+  pre_tasks:
+
+  - name: install update
+    tags: always
+    yum:
+      update_only: yes
+      update_cache: yes
+
+- hosts: all
+  become: true
+  tasks:
+
+  - name: create pedro user
+    tags: always
+    user:
+      name: pedro
+      groups: root
+
+  - name: add ssh key for pedro
+    tags: always
+    authorized_key:
+      user: pedro
+      key: "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQDmHXZguHolu2ALfSHAx47tg8Q0t0D/BZunfLgPvEytHqfWqo7F2u3tSRm/aEmuACesS0wndaSOOh0yuOmwM12BFZHoPc3UI5MA8BDi7fis4RO4Iz0Icm9ONpitukjLJYS/9qLuqxI9w8T/3Fk1nbFPQqq2lGnEByAIjNWQasJZWKtfgJYv1lp9Wq52tFIG5q9DGzwFsh+if5e4ulld1um8wZRS3bf8N9Ih24lCXQJuo+EqtXLXx7yP4PtMS6szYzMQTZCtsP+5gJLNgYrul7lxENMOpr7Ga7ZN2SRtBGjuIM/chqZTVqKKwhAyRg+TjUQJGvuPFn/j7yy94CErguyWhqPjWoqIHBh1dno2wkl0gIuajH4IHS+rd+ozRJNxM9Sm9ha4J/mwiXKi29s8XhXuhtK6lFDKk6jbJA4ER3JVQiBY4FhBB/aTmwBICnjGgcr0TIzUwQuGgKU9uF6imoTyfAO2Zcreexrhk+3WDXlVEzVk18EzeWCCh4tpGpp3ljk= ansible"
+
+  - name: add sudoers file for pedro
+    tags: always
+    copy:
+      src: sudoer_pedro
+      dest: /etc/sudoers.d/pedro
+      owner: root
+      group: root
+      mode: 0440
