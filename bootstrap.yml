@@ -9,6 +9,8 @@
     yum:
       update_only: yes
       update_cache: yes
+    when: ansible_distribution == "Amazon" and ansible_distribution_version == "2"
+
 
 - hosts: all
   become: true
