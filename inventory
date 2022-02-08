@@ -1,8 +1,8 @@
-[web_server]
+[web_servers]
 10.0.0.54
 
-[db_server]
+[db_servers]
 10.0.0.149
 
-[workstation]
+[workstations]
 10.0.0.123

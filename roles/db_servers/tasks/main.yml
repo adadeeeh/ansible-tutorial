@@ -1,0 +1,6 @@
+- name: isntall mariadb
+  tags: mariadb,amazon
+  yum:
+    name: mariadb
+    state: latest
+  when: ansible_distribution == "Amazon" and ansible_distribution_version == "2"
